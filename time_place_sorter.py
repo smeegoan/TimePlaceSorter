@@ -39,7 +39,6 @@ def process_file(img_path, geonames_locations, geonames_tree, google_locations, 
         closest = geonames.find_closest_location(
             lat, lon, geonames_locations, geonames_tree)
         if closest:
-            # print(f"  Estimated location: {closest['name']}, {closest['country_code']} (distance: {haversine(lat, lon, closest['latitude'], closest['longitude']):.2f} km)")
             location = closest['name']
         else:
             print("  Could not find a nearby location in the loaded data.")
@@ -60,14 +59,13 @@ def parse_arguments():
 
 # --- Main Script ---
 if __name__ == "__main__":
-    # Parse command line arguments
     args = parse_arguments()
     
     # Configuration from command line arguments
     SOURCE_FOLDER = args.source_folder
     TARGET_FOLDER = args.target_folder
     GOOGLE_LOCATION_HISTORY_FILE = args.google_location_history
-    GEONAMES_FOLDER = r'geonames'  # This remains constant as it wasn't in the original requirement
+    GEONAMES_FOLDER = r'geonames'
     
     # Check if the image folders exist
     if not os.path.isdir(TARGET_FOLDER):
@@ -88,7 +86,6 @@ if __name__ == "__main__":
         google_history_start_tree = None
         google_history_end_tree = None
     
-    # Load GeoNames data (only once)
     geonames_locations = geonames.load_records(GEONAMES_FOLDER)
     geonames_tree, coords = geonames.build_kdtree(geonames_locations)
     if geonames_locations is None:

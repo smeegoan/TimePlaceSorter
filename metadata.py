@@ -2,6 +2,7 @@
 import re
 from datetime import datetime
 import exiftool
+import os
 
 def set_gps_coordinates(filepath, coordinates):
     print(f"\nSetting photo coordinates to {coordinates}: {os.path.basename(filepath)}")
@@ -76,7 +77,6 @@ def get_photo_date(filepath):
                             continue
                 except ValueError as v:
                     pass
- # ---- Fallback: file mod time ----
     try:
         date_obj = extract_datetime_from_filename(filepath)
         if date_obj == None:
