@@ -96,16 +96,24 @@ def extract_datetime_from_filename(filename):
         r'(?P<date>\d{4}-\d{2}-\d{2})_(?P<time>\d{2}-\d{2}-\d{2})(?:-[\w\d]+)?',
         # e.g. 2014-10-06_05-09-48-9976
         r'(?P<date>\d{4}-\d{2}-\d{2})_(?P<time>\d{2}-\d{2}-\d{2})-\d+',
+        # WhatsApp Image format: WhatsApp Image 2025-05-20 at 20.33.30.jpg
+        r'WhatsApp Image (?P<date>\d{4}-\d{2}-\d{2}) at (?P<time>\d{2}\.\d{2}\.\d{2})',
     ]
-
     for pattern in patterns:
         match = re.search(pattern, filename)
         if match:
             date_part = match.group('date')
             time_part = match.group('time')
-            dt = datetime.strptime(
-                f"{date_part} {time_part}", "%Y-%m-%d %H-%M-%S")
-            return dt
+            
+            # Handle WhatsApp format with dots instead of dashes
+            if '.' in time_part:
+                time_part = time_part.replace('.', ':')
+                dt = datetime.strptime(
+                    f"{date_part} {time_part}", "%Y-%m-%d %H:%M:%S")
+            else:
+                dt = datetime.strptime(
+                    f"{date_part} {time_part}", "%Y-%m-%d %H-%M-%S")
 
-    raise None
+            return dt
+    return None
 
