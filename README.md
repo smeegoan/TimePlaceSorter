@@ -16,8 +16,8 @@
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/smeegoan/media-renamer.git
-   cd media-renamer
+   git clone https://github.com/smeegoan/TimePlaceSorter.git
+   cd TimePlaceSorter
    ```
 
 2. **Install Dependencies**:
@@ -31,7 +31,7 @@
 ## Usage
 
 ```bash
-python reverse_geocoding.py [OPTIONS]
+python time_place_sorter.py [OPTIONS]
 ```
 
 ### Command-Line Options
@@ -45,9 +45,9 @@ python reverse_geocoding.py [OPTIONS]
 ### Example
 
 ```bash
-python reverse_geocoding.py -s ./input_media -t ./organized_media -g ~/Downloads/LocationHistory.json
+python time_place_sorter.py -s ./input_media -t ./organized_media -g ~/Downloads/LocationHistory.json
 ```
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/smeegoan/media-renamer/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/smeegoan/TimePlaceSorter/blob/main/LICENSE) file for details.
