@@ -1,14 +1,15 @@
-# Media Renamer
+# TimePlaceSorter
 
-**Media Renamer** is a Python tool designed to rename media files based on their metadata, specifically the date and GPS information embedded within them. This is particularly useful for organizing photos and videos by the time and location they were taken.
+**TimePlaceSorter** is a Python tool that organizes and renames media files based on their metadata—specifically creation date and GPS location. It’s designed to help you sort and name photos and videos by the time and place they were taken, even supplementing missing GPS data using Google Location History.
 
 ## Features
 
-- **Date-Based Renaming**: Extracts the creation date from media metadata to rename files accordingly.
-- **GPS-Based Renaming**: Utilizes GPS coordinates from media metadata to include location information in filenames.
-- **Reverse Geocoding**: Translates GPS coordinates into human-readable locations using reverse geocoding techniques.
-- **Batch Processing**: Processes multiple files in a specified directory, streamlining the renaming process.
-- **Google Location History GeoCoding**: Utilizes GPS coordinates from Google Location Hisotry to include location information in media metadata and file names.
+- **Date-Based Renaming**: Extracts the creation date from media metadata to organize files chronologically.
+- **Location-Based Renaming**: Uses embedded GPS data to include location names in filenames.
+- **Reverse Geocoding via GeoNames**: Converts GPS coordinates into readable location names (e.g., city or locality).
+- **Google Location History Integration**: Supplements missing GPS metadata using your Google Location History export, and optionally updates media metadata with this info.
+- **Batch Processing**: Recursively scans a source folder and processes all supported media files.
+- **Threaded Execution**: Utilizes multithreading for efficient processing of large batches.
 
 ## Installation
 
@@ -21,7 +22,7 @@
 
 2. **Install Dependencies**:
 
-   Ensure you have Python 3 installed. Then, install the required packages:
+   Ensure Python 3 is installed, then run:
 
    ```bash
    pip install -r requirements.txt
@@ -29,21 +30,24 @@
 
 ## Usage
 
-1. **Prepare Your Media Files**:
+```bash
+python reverse_geocoding.py [OPTIONS]
+```
 
-   Place the media files you wish to rename into a directory.
+### Command-Line Options
 
-2. **Run the Script**:
+| Argument | Description | Default |
+|----------|-------------|---------|
+| `--source-folder`, `-s` | Path to folder with source media files | `D:\Pictures\Várias	mp` |
+| `--target-folder`, `-t` | Path to destination folder where files will be organized | `D:\Pictures\Várias` |
+| `--google-location-history`, `-g` | Path to your Google Location History JSON file | `location-history.json` |
 
-   Execute the `reverse_geocoding.py` script, specifying the path to your media directory:
+### Example
 
-   ```bash
-   python reverse_geocoding.py /path/to/media/files
-   ```
-
-   The script will process each file, extract the relevant metadata, perform reverse geocoding for GPS data, and rename the files accordingly.
+```bash
+python reverse_geocoding.py -s ./input_media -t ./organized_media -g ~/Downloads/LocationHistory.json
+```
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/smeegoan/media-renamer/blob/main/LICENSE) file for details.
-
