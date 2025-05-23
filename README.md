@@ -8,6 +8,7 @@
 - **GPS-Based Renaming**: Utilizes GPS coordinates from media metadata to include location information in filenames.
 - **Reverse Geocoding**: Translates GPS coordinates into human-readable locations using reverse geocoding techniques.
 - **Batch Processing**: Processes multiple files in a specified directory, streamlining the renaming process.
+- **Google Location History GeoCoding**: Utilizes GPS coordinates from Google Location Hisotry to include location information in media metadata and file names.
 
 ## Installation
 
